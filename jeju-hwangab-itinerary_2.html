@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>부모님 환갑 제주 여행 · 2박 3일</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<style>
+  :root{
+    --paper:#F2E9D6;
+    --card:#FBF6EA;
+    --ink:#22332C;
+    --ink-soft:#4A5950;
+    --muted:#857C68;
+    --sea:#2E8270;
+    --sea-deep:#1A4A40;
+    --tangerine:#DB7733;
+    --tangerine-soft:#F0E0CB;
+    --camellia:#A8384A;
+    --line:rgba(34,51,44,.14);
+    --line-strong:rgba(34,51,44,.28);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:"Pretendard","Noto Sans KR",sans-serif;
+    background:var(--paper);
+    color:var(--ink);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    font-feature-settings:"tnum";
+  }
+  .wrap{max-width:760px;margin:0 auto;padding:0 20px}
+  .serif{font-family:"Gowun Batang",serif}
+
+  /* ---------- hero ---------- */
+  .hero{padding:56px 0 40px;position:relative}
+  .eyebrow{display:flex;align-items:center;gap:14px;margin-bottom:22px}
+  .seal{
+    flex:0 0 auto;width:50px;height:50px;border-radius:50%;
+    border:1.5px solid var(--camellia);
+    display:grid;place-items:center;
+    color:var(--camellia);font-family:"Gowun Batang",serif;font-size:26px;
+    transform:rotate(-6deg);
+    box-shadow:inset 0 0 0 3px rgba(168,56,74,.12);
+  }
+  .eyebrow .label{
+    font-size:12px;letter-spacing:.32em;text-transform:uppercase;
+    color:var(--camellia);font-weight:700;
+  }
+  .eyebrow .label small{display:block;letter-spacing:.04em;text-transform:none;
+    color:var(--muted);font-weight:500;font-size:12px;margin-top:3px}
+  h1.title{
+    font-family:"Gowun Batang",serif;font-weight:700;
+    font-size:clamp(34px,8vw,56px);line-height:1.12;letter-spacing:-.01em;
+    color:var(--sea-deep);
+  }
+  h1.title em{font-style:normal;color:var(--tangerine)}
+  .lede{margin-top:18px;font-size:16px;color:var(--ink-soft);max-width:46ch}
+
+  .facts{
+    margin-top:30px;display:grid;grid-template-columns:repeat(2,1fr);
+    gap:1px;background:var(--line);border:1px solid var(--line);
+    border-radius:14px;overflow:hidden;
+  }
+  .fact{background:var(--card);padding:16px 18px}
+  .fact .k{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:700}
+  .fact .v{margin-top:5px;font-size:16px;font-weight:600;color:var(--ink)}
+  .fact .v span{color:var(--sea);font-weight:700}
+  .fact .v small{display:block;font-weight:500;font-size:13px;color:var(--muted);margin-top:2px}
+
+  /* ---------- glance ---------- */
+  .glance{margin:36px 0 8px;border-top:1px solid var(--line-strong);padding-top:28px}
+  .sec-label{font-size:12px;letter-spacing:.26em;text-transform:uppercase;
+    color:var(--tangerine);font-weight:700;margin-bottom:16px}
+  .glance ol{list-style:none;display:grid;gap:10px}
+  .glance li{display:flex;gap:14px;align-items:baseline}
+  .glance .gd{font-family:"Gowun Batang",serif;color:var(--sea);font-size:15px;
+    flex:0 0 64px;font-weight:700}
+  .glance .gt{color:var(--ink-soft);font-size:15px}
+  .glance .gt b{color:var(--ink);font-weight:600}
+
+  /* ---------- map ---------- */
+  .map-sec{margin-top:40px}
+  .map-controls{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0 14px}
+  .map-btn{font-family:inherit;font-size:13px;font-weight:700;cursor:pointer;
+    border:1px solid var(--line-strong);background:var(--card);color:var(--ink-soft);
+    padding:8px 15px;border-radius:30px;transition:background .18s,color .18s,border-color .18s}
+  .map-btn:hover{border-color:var(--sea)}
+  .map-btn:focus-visible{outline:2px solid var(--sea);outline-offset:2px}
+  .map-btn.active{background:var(--sea-deep);color:#fff;border-color:var(--sea-deep)}
+  .map-btn .swatch{display:inline-block;width:9px;height:9px;border-radius:50%;
+    margin-right:7px;vertical-align:middle}
+  #map{height:460px;width:100%;border-radius:16px;border:1px solid var(--line-strong);
+    z-index:0;background:#dde6e1}
+  .map-note{margin-top:11px;font-size:12.5px;color:var(--muted);text-align:center;line-height:1.5}
+  .pin{display:grid;place-items:center;width:30px;height:30px;
+    border-radius:50% 50% 50% 0;transform:rotate(-45deg);
+    box-shadow:0 2px 6px rgba(0,0,0,.32);border:2px solid #fff}
+  .pin span{transform:rotate(45deg);color:#fff;font-weight:800;font-size:13px;
+    font-family:"Pretendard",sans-serif;line-height:1}
+  .pin.home{border-radius:9px;transform:none}
+  .pin.home span{transform:none;font-family:"Gowun Batang",serif;font-size:15px}
+  .leaflet-popup-content{font-family:"Pretendard",sans-serif;margin:12px 15px}
+  .pop-time{font-size:11px;font-weight:700;color:var(--tangerine);letter-spacing:.05em}
+  .pop-name{font-size:15px;font-weight:700;color:var(--ink);margin:2px 0 4px}
+  .pop-note{font-size:12.5px;color:var(--ink-soft);line-height:1.45;max-width:210px}
+  .leaflet-container{font-family:"Pretendard",sans-serif}
+
+  .map-layout{display:grid;grid-template-columns:1.2fr 1fr;gap:18px;align-items:start;margin-top:2px}
+  .map-pane{min-width:0}
+  .panel-wrap{min-width:0}
+  .day-panel{display:none;background:var(--card);border:1px solid var(--line);
+    border-radius:16px;padding:20px 18px;max-height:512px;overflow:auto}
+  .day-panel.active{display:block;animation:rise .45s ease}
+  .day-panel .day-head{margin-bottom:16px}
+  .day-panel .stop-body{background:var(--paper)}
+  .day-panel .timeline .stop{grid-template-columns:46px 24px 1fr}
+  .panel-overview{display:grid;gap:13px}
+  .panel-overview .ov{display:flex;gap:12px;align-items:baseline}
+  .panel-overview .od{flex:0 0 58px;color:var(--sea);font-weight:700;font-size:15px}
+  .panel-overview .ot{font-size:14px;color:var(--ink-soft)}
+  .panel-overview .ot b{color:var(--ink);font-weight:700}
+  .panel-hint{margin-top:16px;font-size:12.5px;color:var(--muted);line-height:1.5;
+    border-top:1px solid var(--line);padding-top:14px}
+  .pop-links{display:flex;gap:6px;margin-top:10px}
+  .pop-links a{font-size:12px;font-weight:700;text-decoration:none;padding:5px 9px;
+    border-radius:7px;border:1px solid var(--line-strong);color:var(--ink)}
+  .pop-links a:hover{background:var(--paper);border-color:var(--sea)}
+  @media (max-width:820px){
+    .map-layout{grid-template-columns:1fr;gap:14px}
+    .day-panel{max-height:none}
+    #map{height:380px}
+  }
+
+  /* ---------- day ---------- */
+  .day{margin-top:44px}
+  .day-head{display:flex;align-items:flex-end;justify-content:space-between;
+    gap:16px;flex-wrap:wrap;margin-bottom:24px}
+  .day-head .left{display:flex;align-items:baseline;gap:16px}
+  .ord{font-family:"Gowun Batang",serif;font-size:clamp(26px,6vw,38px);
+    font-weight:700;color:var(--sea-deep);line-height:1}
+  .ord small{display:block;font-family:"Pretendard",sans-serif;font-size:12px;
+    letter-spacing:.1em;color:var(--muted);font-weight:600;margin-top:6px}
+  .day-theme{font-size:17px;font-weight:600;color:var(--tangerine)}
+  .day-date{font-size:13px;color:var(--muted);font-weight:600;white-space:nowrap}
+
+  .timeline{list-style:none;position:relative}
+  .stop{display:grid;grid-template-columns:54px 26px 1fr;
+    column-gap:6px;padding-bottom:24px;position:relative}
+  .stop:last-child{padding-bottom:0}
+  .stop-time{font-size:13px;font-weight:700;color:var(--ink);
+    text-align:right;padding-top:1px;font-variant-numeric:tabular-nums}
+  .rail{position:relative;display:flex;justify-content:center}
+  .dot{width:14px;height:14px;border-radius:50%;background:var(--tangerine);
+    border:3px solid var(--card);box-shadow:0 0 0 1.5px var(--tangerine);
+    margin-top:4px;z-index:1}
+  .stop.start .dot{background:var(--sea);box-shadow:0 0 0 1.5px var(--sea)}
+  .stop.end .dot{background:var(--camellia);box-shadow:0 0 0 1.5px var(--camellia)}
+  .rail::after{content:"";position:absolute;top:18px;bottom:-24px;left:50%;
+    transform:translateX(-50%);width:2px;
+    background:linear-gradient(var(--sea),var(--sea));opacity:.4}
+  .stop:last-child .rail::after{display:none}
+
+  .stop-body{background:var(--card);border:1px solid var(--line);
+    border-radius:13px;padding:14px 16px}
+  .stop-head{display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+  .stop-head h4{font-size:16px;font-weight:700;color:var(--ink)}
+  .tag{font-size:11px;font-weight:700;letter-spacing:.02em;color:var(--sea-deep);
+    background:rgba(46,130,112,.13);padding:3px 9px;border-radius:20px}
+  .tag.eat{color:#8a4a16;background:rgba(219,119,51,.16)}
+  .tag.photo{color:var(--camellia);background:rgba(168,56,74,.12)}
+  .stop-body p{font-size:14px;color:var(--ink-soft);margin-top:7px}
+  .drive{font-size:12.5px;color:var(--muted);font-weight:600;margin-top:9px;
+    display:flex;align-items:center;gap:6px}
+  .drive::before{content:"";width:14px;height:1.5px;background:var(--tangerine);
+    display:inline-block;flex:0 0 auto}
+  .opt{font-size:11px;font-weight:700;color:var(--tangerine);
+    border:1px dashed var(--tangerine);border-radius:5px;padding:1px 6px;margin-left:2px}
+
+  /* ---------- tips ---------- */
+  .tips{margin:48px 0 0;background:var(--sea-deep);color:#EAF2EE;
+    border-radius:18px;padding:30px 26px}
+  .tips .sec-label{color:var(--tangerine)}
+  .tips h3{font-family:"Gowun Batang",serif;font-size:22px;font-weight:700;
+    color:#fff;margin-bottom:18px}
+  .tips ul{list-style:none;display:grid;gap:16px}
+  .tips li{display:grid;grid-template-columns:24px 1fr;gap:12px;align-items:start}
+  .tips .num{font-family:"Gowun Batang",serif;color:var(--tangerine);
+    font-size:17px;font-weight:700;line-height:1.5}
+  .tips li b{color:#fff;font-weight:700}
+  .tips li p{font-size:14px;color:#C7D6CF;margin-top:2px}
+
+  footer{padding:34px 0 50px;text-align:center}
+  footer p{font-size:12.5px;color:var(--muted)}
+  footer .dots{margin-bottom:14px;color:var(--tangerine);letter-spacing:.5em;font-size:11px}
+
+  @media (max-width:480px){
+    .facts{grid-template-columns:1fr}
+    .stop{grid-template-columns:46px 22px 1fr}
+    .stop-time{font-size:12px}
+  }
+
+  /* entrance */
+  .reveal{opacity:0;transform:translateY(14px);animation:rise .7s cubic-bezier(.2,.7,.3,1) forwards}
+  .day:nth-of-type(1){animation-delay:.05s}
+  @keyframes rise{to{opacity:1;transform:none}}
+  @media (prefers-reduced-motion:reduce){
+    .reveal{animation:none;opacity:1;transform:none}
+    html{scroll-behavior:auto}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="hero reveal">
+    <div class="eyebrow">
+      <div class="seal serif" aria-hidden="true">壽</div>
+      <div class="label">환갑 기념 여행<small>온 가족이 함께한 제주</small></div>
+    </div>
+    <h1 class="title serif">제주에서 보내는<br>부모님 <em>환갑</em>날</h1>
+    <p class="lede">아기 둘과 함께라 동선은 짧게, 마음은 넉넉하게. 신화월드를 거점으로 서남부에만 머무는 저강도 2박 3일 코스입니다.</p>
+
+    <div class="facts">
+      <div class="fact">
+        <div class="k">일정</div>
+        <div class="v">8.29 금 → 8.31 일<small>2박 3일</small></div>
+      </div>
+      <div class="fact">
+        <div class="k">비행기</div>
+        <div class="v"><span>10:20</span> 입도 · <span>14:25</span> 출도<small>제주국제공항</small></div>
+      </div>
+      <div class="fact">
+        <div class="k">숙소</div>
+        <div class="v">써머셋 제주신화월드<small>안덕면 · 서남부 거점</small></div>
+      </div>
+      <div class="fact">
+        <div class="k">함께</div>
+        <div class="v">환갑 부모님과 온 가족<small>돌쟁이 + 4개월 아기 동반</small></div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ROUTE + ITINERARY -->
+  <section class="map-sec reveal">
+    <div class="sec-label">여행 경로 · 날짜별로 보기</div>
+    <div class="map-controls" role="tablist" aria-label="날짜별 경로 보기">
+      <button class="map-btn active" data-day="all" role="tab" aria-selected="true">전체 보기</button>
+      <button class="map-btn" data-day="d1" role="tab" aria-selected="false"><span class="swatch" style="background:#2E8270"></span>첫째 날</button>
+      <button class="map-btn" data-day="d2" role="tab" aria-selected="false"><span class="swatch" style="background:#DB7733"></span>둘째 날</button>
+      <button class="map-btn" data-day="d3" role="tab" aria-selected="false"><span class="swatch" style="background:#A8384A"></span>셋째 날</button>
+    </div>
+    <div class="map-layout">
+      <div class="map-pane">
+        <div id="map" role="img" aria-label="제주 서남부 여행 경로 지도"></div>
+        <p class="map-note">마커를 누르면 시간·장소와 <b>지도앱 길찾기</b> 링크(네이버·카카오·구글)가 떠요. 선은 직선 동선, 숙소(宿)는 모든 코스의 거점입니다.</p>
+      </div>
+      <div class="panel-wrap">
+        <div class="day-panel active" data-day="all">
+          <div class="day-head"><div class="left"><div class="ord serif">한눈에<small>OVERVIEW</small></div><div class="day-theme">2박 3일 요약</div></div></div>
+          <div class="panel-overview">
+            <div class="ov"><span class="od serif">첫째 날</span><span class="ot"><b>서쪽 해안</b> · 협재 → 산방산·사계(환갑 사진) → 원앤온리</span></div>
+            <div class="ov"><span class="od serif">둘째 날</span><span class="ot"><b>중문</b> · 카멜리아힐 → 고집돌우럭 → 더클리프</span></div>
+            <div class="ov"><span class="od serif">셋째 날</span><span class="ot"><b>마무리</b> · 숙소 여유 → (본태박물관) → 공항</span></div>
+          </div>
+          <p class="panel-hint">위 탭에서 날짜를 누르면 그날 동선이 지도에 표시되고, 여기에 상세 일정이 나와요.</p>
+        </div>
+
+  <div class="day-panel" data-day="d1">
+    <div class="day-head">
+      <div class="left">
+        <div class="ord serif">첫째 날<small>DAY 1</small></div>
+        <div class="day-theme">도착 · 서쪽 해안 · 환갑 사진</div>
+      </div>
+      <div class="day-date">8.29 (금)</div>
+    </div>
+    <ul class="timeline">
+      <li class="stop start">
+        <div class="stop-time">10:20</div>
+        <div class="rail"><div class="dot"></div></div>
+        <div class="stop-body">
+          <div class="stop-head"><h4>제주공항 도착</h4><span class="tag">렌터카</span></div>
+          <p>수하물 찾고 렌터카 수령. <b>카시트 2개(영아용+유아용) 예약 필수</b> — 현장 요청 시 없는 경우가 많아요.</p>
+          <div class="drive">협재해변까지 차로 40분</div>
+        </div>
+      </li>
+      <li class="stop">
+        <div class="stop-time">12:00</div>
+        <div class="rail"><div class="dot"></div></div>
+        <div class="stop-body">
+          <div class="stop-head"><h4>협재해변</h4><span class="tag eat">점심 · 해변</span></div>
+          <p>비양도 뷰와 하얀 모래의 서쪽 대표 해변. 근처 해물·한치 식당에서 점심. 더 느긋하게 가고 싶으면 바로 옆 <b>한림공원</b>(정원·동굴, 부모님 만족도 높음)으로 대체.</p>
+          <div class="drive">사계해변까지 차로 30분 (남쪽)</div>
+        </div>
+      </li>
+      <li class="stop">
+        <div class="stop-time">14:30</div>
+        <div class="rail"><div class="dot"></div></div>
+        <div class="stop-body">
+          <div class="stop-head"><h4>사계해변</h4><span class="tag photo">환갑 사진</span></div>
+          <p>평지 산책로에서 산방산·형제섬을 배경으로. 이번 여행의 <b>환갑 기념사진 메인 스팟</b>. 바로 옆 용머리해안은 계단·물때 통제가 잦아 조망만.</p>
+          <div class="drive">원앤온리까지 차로 5분</div>
+        </div>
+      </li>
+      <li class="stop">
+        <div class="stop-time">15:30</div>
+        <div class="rail"><div class="dot"></div></div>
+        <div class="stop-body">
+          <div class="stop-head"><h4>원앤온리</h4><span class="tag">산방산뷰 카페</span></div>
+          <p>산방산과 바다가 한 프레임에 담기는 카페. 실내외가 넓고 화장실이 깨끗하며 야외 벤치가 많아 <b>아기·부모님께 가장 편한 쉼터</b>.</p>
+          <div class="drive">숙소까지 차로 12분</div>
+        </div>
+      </li>
+      <li class="stop end">
+        <div class="stop-time">17:00</div>
+        <div class="rail"><div class="dot"></div></div>
+        <div class="stop-body">
+          <div class="stop-head"><h4>써머셋 체크인</h4><span class="tag">휴식</span></div>
+          <p>단지 내 수영장·편의점·식당으로 첫날 저녁은 편하게. 도착일치곤 알찬 편이니, 아기 컨디션 보고 사계·원앤온리 중 하나는 건너뛰어도 좋아요.</p>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <div class="day-panel" data-day="d2">
+    <div class="day-head">
+      <div class="left">
+        <div class="ord serif">둘째 날<small>DAY 2</small></div>
+        <div class="day-theme">카멜리아힐 · 중문</div>
+      </div>
+      <div class="day-date">8.30 (토)</div>
+    </div>
+    <ul class="timeline">
+      <li class="stop start">
+        <div class="stop-time">08:40</div>
+        <div class="rail"><div class="dot"></div></div>
+        <div class="stop-body">
+          <div class="stop-head"><h4>카멜리아힐</h4><span class="tag">정원 산책</span></div>
+          <p>8:30 오픈 직후가 덜 덥고 한적. 평탄한 길이 많아 유모차 OK. <b>8월 말엔 동백은 안 펴니</b> 꽃보다 그늘 정원 산책으로 기대치 조정.</p>
+          <div class="drive">고집돌우럭까지 차로 20분 (동쪽)</div>
+        </div>
+      </li>
+      <li class="stop">
+        <div class="stop-time">11:30</div>
+        <div class="rail"><div class="dot"></div></div>
+        <div class="stop-body">
+          <div class="stop-head"><h4>고집돌우럭 본점</h4><span class="tag eat">점심 · 돌우럭조림</span></div>
+          <p>이번 여행의 <b>필수 코스</b>. 11:30 도착이면 점심 피크와 브레이크타임(14:50)을 둘 다 피해요. '테이블링' 앱 예약 권장, 최소 2인분 주문.</p>
+          <div class="drive">더클리프까지 차로 2분</div>
+        </div>
+      </li>
+      <li class="stop">
+        <div class="stop-time">13:00</div>
+        <div class="rail"><div class="dot"></div></div>
+        <div class="stop-body">
+          <div class="stop-head"><h4>더클리프</h4><span class="tag">중문 오션뷰</span></div>
+          <p>중문색달해변 절벽 위 오션뷰가 일품. 비치클럽·라운지 분위기라 낮엔 괜찮지만 조용한 카페는 아니에요. 분위기 사진엔 최고.</p>
+          <div class="drive">숙소까지 차로 20분</div>
+        </div>
+      </li>
+      <li class="stop end">
+        <div class="stop-time">15:00</div>
+        <div class="rail"><div class="dot"></div></div>
+        <div class="stop-body">
+          <div class="stop-head"><h4>써머셋 복귀</h4><span class="tag">수영장 · 휴식</span></div>
+          <p>한낮 더위는 단지 수영장에서. 아기 낮잠 리듬에 맞춰 오후는 여유롭게.</p>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <div class="day-panel" data-day="d3">
+    <div class="day-head">
+      <div class="left">
+        <div class="ord serif">셋째 날<small>DAY 3</small></div>
+        <div class="day-theme">마무리 · 출발</div>
+      </div>
+      <div class="day-date">8.31 (일)</div>
+    </div>
+    <ul class="timeline">
+      <li class="stop start">
+        <div class="stop-time">오전</div>
+        <div class="rail"><div class="dot"></div></div>
+        <div class="stop-body">
+          <div class="stop-head"><h4>숙소에서 여유</h4><span class="tag">체크아웃</span></div>
+          <p>수영장·산책으로 마지막 아침. 11:30 전에 체크아웃하고 출발 준비.</p>
+        </div>
+      </li>
+      <li class="stop">
+        <div class="stop-time">10:00</div>
+        <div class="rail"><div class="dot"></div></div>
+        <div class="stop-body">
+          <div class="stop-head"><h4>본태박물관</h4><span class="tag">실내</span><span class="opt">선택</span></div>
+          <p>시간·날씨 되면 잠깐. 타다오 안도 건축에 실내라 더위·비와 무관. 생략하고 공항 근처에서 점심으로 마무리해도 좋아요.</p>
+          <div class="drive">공항까지 차로 약 50분</div>
+        </div>
+      </li>
+      <li class="stop end">
+        <div class="stop-time">14:25</div>
+        <div class="rail"><div class="dot"></div></div>
+        <div class="stop-body">
+          <div class="stop-head"><h4>제주공항 출발</h4><span class="tag">비행기</span></div>
+          <p>숙소에서 공항까지 약 50분이라 11:30 출발이 목표. 가볍게 마무리하고 탑승.</p>
+        </div>
+      </li>
+    </ul>
+  </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TIPS -->
+  <section class="tips reveal">
+    <div class="sec-label">꼭 챙길 것</div>
+    <h3>아기 둘 · 환갑 부모님 동반 체크리스트</h3>
+    <ul>
+      <li><span class="num">一</span><div><b>카시트 2개 예약</b><p>4개월(영아용)과 돌쟁이(유아용)는 종류가 달라요. 렌터카 예약 때 둘 다 명시.</p></div></li>
+      <li><span class="num">二</span><div><b>고집돌우럭은 11:30 도착</b><p>점심 피크와 브레이크타임(14:50)을 피하는 황금 시간. '테이블링' 예약·최소 2인분.</p></div></li>
+      <li><span class="num">三</span><div><b>더클리프는 낮에</b><p>노을 시간(17~18시)엔 자리 경쟁이 심해요. 점심 직후가 한가합니다.</p></div></li>
+      <li><span class="num">四</span><div><b>카멜리아힐 = 동백 비수기</b><p>8월 말엔 꽃이 없어요. 꽃이 중요하면 같은 시간에 본태박물관(실내·시원)으로 교체.</p></div></li>
+      <li><span class="num">五</span><div><b>날씨·태풍 변수</b><p>늦더위와 태풍철. 야외는 오전에 몰고 한낮엔 숙소 수영장. 비 오면 본태박물관으로 대체.</p></div></li>
+      <li><span class="num">六</span><div><b>동부는 과감히 패스</b><p>성산·우도는 편도 1시간 반. 모든 코스를 숙소 기준 차로 5~25분 안에 묶었어요.</p></div></li>
+    </ul>
+  </section>
+
+  <footer>
+    <div class="dots">· · ·</div>
+    <p>제주 환갑 여행 · 2박 3일 · 신화월드 거점 서남부 코스</p>
+  </footer>
+
+</div>
+<script>
+(function(){
+  if(typeof L==='undefined'){ return; }
+
+  var base={ll:[33.3027,126.3170], label:'宿', name:'써머셋 제주신화월드', q:'써머셋 제주신화월드', note:'서남부 거점 · 모든 코스 차로 5~25분'};
+
+  var days=[
+    {key:'d1', color:'#2E8270', startBase:false, endBase:true, stops:[
+      {label:'✈', t:'10:20', name:'제주공항 도착', q:'제주국제공항', note:'렌터카 · 카시트 2개', ll:[33.5113,126.4930]},
+      {label:'1', t:'12:00', name:'협재해변', q:'협재해변', note:'점심 · 비양도 뷰', ll:[33.3943,126.2399]},
+      {label:'2', t:'14:30', name:'사계해변', q:'사계해변', note:'산방산 배경 · 환갑 사진', ll:[33.2312,126.3105]},
+      {label:'3', t:'15:30', name:'원앤온리', q:'원앤온리 안덕', note:'산방산뷰 카페 · 휴식', ll:[33.2392,126.3194]}
+    ]},
+    {key:'d2', color:'#DB7733', startBase:true, endBase:true, stops:[
+      {label:'1', t:'08:40', name:'카멜리아힐', q:'카멜리아힐', note:'정원 산책', ll:[33.2898,126.3683]},
+      {label:'2', t:'11:30', name:'고집돌우럭 본점', q:'고집돌우럭 본점 중문', note:'점심 · 돌우럭조림', ll:[33.2579,126.4168]},
+      {label:'3', t:'13:00', name:'더클리프', q:'더클리프 중문', note:'중문 오션뷰 카페', ll:[33.2443,126.4150]}
+    ]},
+    {key:'d3', color:'#A8384A', startBase:true, endBase:false, stops:[
+      {label:'1', t:'10:00', name:'본태박물관', q:'본태박물관', note:'실내 · 선택', ll:[33.3038,126.3925]},
+      {label:'✈', t:'14:25', name:'제주공항 출발', q:'제주국제공항', note:'14:25 비행기', ll:[33.5113,126.4930]}
+    ]}
+  ];
+
+  function routeOf(d){
+    var pts=d.stops.map(function(s){return s.ll;});
+    if(d.startBase) pts.unshift(base.ll);
+    if(d.endBase) pts.push(base.ll);
+    return pts;
+  }
+  function pinIcon(label,color,home){
+    var cls=home?'pin home':'pin';
+    return L.divIcon({className:'', html:'<div class="'+cls+'" style="background:'+color+'"><span>'+label+'</span></div>',
+      iconSize:[30,30], iconAnchor:home?[15,15]:[15,30], popupAnchor:home?[0,-14]:[0,-28]});
+  }
+  function mapLinks(name,q,ll){
+    var nv='https://map.naver.com/p/search/'+encodeURIComponent(q||name);
+    var kk='https://map.kakao.com/link/to/'+encodeURIComponent(name)+','+ll[0]+','+ll[1];
+    var gg='https://www.google.com/maps/search/?api=1&query='+ll[0]+','+ll[1];
+    return '<div class="pop-links">'+
+      '<a target="_blank" rel="noopener" href="'+nv+'">네이버</a>'+
+      '<a target="_blank" rel="noopener" href="'+kk+'">카카오</a>'+
+      '<a target="_blank" rel="noopener" href="'+gg+'">구글</a></div>';
+  }
+  function popupHtml(s){
+    return '<div class="pop-time">'+(s.t||'')+'</div><div class="pop-name">'+s.name+'</div>'+
+      '<div class="pop-note">'+s.note+'</div>'+mapLinks(s.name,s.q,s.ll);
+  }
+
+  var map=L.map('map',{scrollWheelZoom:false});
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png',{
+    attribution:'&copy; OpenStreetMap &copy; CARTO', subdomains:'abcd', maxZoom:19}).addTo(map);
+
+  L.marker(base.ll,{icon:pinIcon(base.label,'#22332C',true), zIndexOffset:1000})
+    .addTo(map).bindPopup('<div class="pop-name">'+base.name+' (숙소)</div><div class="pop-note">'+base.note+'</div>'+mapLinks(base.name,base.q,base.ll));
+
+  var groups={}, allLL=[base.ll];
+  days.forEach(function(d){
+    var g=L.layerGroup();
+    L.polyline(routeOf(d),{color:d.color, weight:3, opacity:.75, dashArray:'7 8', lineCap:'round'}).addTo(g);
+    d.stops.forEach(function(s){
+      allLL.push(s.ll);
+      L.marker(s.ll,{icon:pinIcon(s.label,d.color,false)}).addTo(g).bindPopup(popupHtml(s));
+    });
+    groups[d.key]=g;
+  });
+
+  function fit(ll){ map.fitBounds(L.latLngBounds(ll).pad(0.16)); }
+  function showAll(){ for(var k in groups){ map.addLayer(groups[k]); } fit(allLL); }
+  function showDay(key){
+    for(var k in groups){ if(k===key){ map.addLayer(groups[k]); } else { map.removeLayer(groups[k]); } }
+    var ll=[base.ll];
+    days.forEach(function(d){ if(d.key===key){ d.stops.forEach(function(s){ ll.push(s.ll); }); } });
+    fit(ll);
+  }
+
+  var panels=document.querySelectorAll('.day-panel');
+  function setPanel(key){
+    panels.forEach(function(p){ p.classList.toggle('active', p.getAttribute('data-day')===key); });
+  }
+
+  showAll(); setPanel('all');
+  setTimeout(function(){ map.invalidateSize(); fit(allLL); }, 300);
+
+  var btns=document.querySelectorAll('.map-btn');
+  btns.forEach(function(b){
+    b.addEventListener('click',function(){
+      btns.forEach(function(x){ x.classList.remove('active'); x.setAttribute('aria-selected','false'); });
+      b.classList.add('active'); b.setAttribute('aria-selected','true');
+      var d=b.getAttribute('data-day');
+      if(d==='all'){ showAll(); } else { showDay(d); }
+      setPanel(d);
+      setTimeout(function(){ map.invalidateSize(); }, 60);
+    });
+  });
+})();
+</script>
+</body>
+</html>
