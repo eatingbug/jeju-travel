@@ -183,6 +183,18 @@
   .opt{font-size:11px;font-weight:700;color:var(--tangerine);
     border:1px dashed var(--tangerine);border-radius:5px;padding:1px 6px;margin-left:2px}
 
+  /* ---------- eats (맛집 후보) ---------- */
+  .eats{margin-top:44px}
+  .eats h3{font-family:"Gowun Batang",serif;font-size:22px;font-weight:700;
+    color:var(--sea-deep);margin:2px 0 16px}
+  .eats-grid{display:grid;gap:14px}
+  .eat-card{background:var(--card);border:1px solid var(--line);
+    border-radius:13px;padding:14px 16px}
+  .eat-card p{font-size:14px;color:var(--ink-soft);margin-top:7px}
+  .eat-meta{font-size:12.5px;color:var(--muted);font-weight:600;margin-top:9px}
+  .eat-card .pop-links{flex-wrap:wrap}
+  @media (min-width:560px){.eats-grid{grid-template-columns:1fr 1fr}}
+
   /* ---------- tips ---------- */
   .tips{margin:48px 0 0;background:var(--sea-deep);color:#EAF2EE;
     border-radius:18px;padding:30px 26px}
@@ -225,7 +237,7 @@
       <div class="label">환갑 기념 여행<small>온 가족이 함께한 제주</small></div>
     </div>
     <h1 class="title serif">제주에서 보내는<br>부모님 <em>환갑</em>날</h1>
-    <p class="lede">아기 둘과 함께라 동선은 짧게, 마음은 넉넉하게. 신화월드를 거점으로 서남부에만 머무는 저강도 2박 3일 코스입니다.</p>
+    <p class="lede">아기 둘과 함께라 동선은 짧게, 마음은 넉넉하게. 신화월드를 거점으로 서남부·서부 해안을 도는 저강도 2박 3일 코스입니다.</p>
 
     <div class="facts">
       <div class="fact">
@@ -265,9 +277,9 @@
         <div class="day-panel active" data-day="all">
           <div class="day-head"><div class="left"><div class="ord serif">한눈에<small>OVERVIEW</small></div><div class="day-theme">2박 3일 요약</div></div></div>
           <div class="panel-overview">
-            <div class="ov"><span class="od serif">첫째 날</span><span class="ot"><b>서쪽 해안</b> · 협재 → 산방산·사계(환갑 사진) → 원앤온리</span></div>
-            <div class="ov"><span class="od serif">둘째 날</span><span class="ot"><b>중문</b> · 카멜리아힐 → 고집돌우럭 → 더클리프</span></div>
-            <div class="ov"><span class="od serif">셋째 날</span><span class="ot"><b>마무리</b> · 숙소 여유 → (본태박물관) → 공항</span></div>
+            <div class="ov"><span class="od serif">첫째 날</span><span class="ot"><b>도착·중문</b> · 고집돌우럭(점심) → 오설록 → 써머셋 수영 → 숙성도(저녁)</span></div>
+            <div class="ov"><span class="od serif">둘째 날</span><span class="ot"><b>중문·사계</b> · 여미지식물원 → 더클리프(점심) → 환갑 파티 → 사계 일몰</span></div>
+            <div class="ov"><span class="od serif">셋째 날</span><span class="ot"><b>마무리</b> · 한림공원 → 협재(점심) → 공항</span></div>
           </div>
           <p class="panel-hint">위 탭에서 날짜를 누르면 그날 동선이 지도에 표시되고, 여기에 상세 일정이 나와요.</p>
         </div>
@@ -276,7 +288,7 @@
     <div class="day-head">
       <div class="left">
         <div class="ord serif">첫째 날<small>DAY 1</small></div>
-        <div class="day-theme">도착 · 서쪽 해안 · 환갑 사진</div>
+        <div class="day-theme">도착 · 공항 점심 · 수영 · 흑돼지</div>
       </div>
       <div class="day-date">8.29 (금)</div>
     </div>
@@ -286,43 +298,43 @@
         <div class="rail"><div class="dot"></div></div>
         <div class="stop-body">
           <div class="stop-head"><h4>제주공항 도착</h4><span class="tag">렌터카</span></div>
-          <p>수하물 찾고 렌터카 수령. <b>카시트 2개(영아용+유아용) 예약 필수</b> — 현장 요청 시 없는 경우가 많아요.</p>
-          <div class="drive">협재해변까지 차로 40분</div>
+          <p>수하물 찾고 렌터카 수령. <b>카시트 2개(영아용+유아용) 예약 필수</b> — 현장 요청 시 없는 경우가 많아요. 차 받자마자 <b>캐치테이블로 점심집 원격 줄서기</b>.</p>
+          <div class="drive">고집돌우럭까지 차로 10분</div>
         </div>
       </li>
       <li class="stop">
-        <div class="stop-time">12:00</div>
+        <div class="stop-time">11:30</div>
         <div class="rail"><div class="dot"></div></div>
         <div class="stop-body">
-          <div class="stop-head"><h4>협재해변</h4><span class="tag eat">점심 · 해변</span></div>
-          <p>비양도 뷰와 하얀 모래의 서쪽 대표 해변. 근처 해물·한치 식당에서 점심. 더 느긋하게 가고 싶으면 바로 옆 <b>한림공원</b>(정원·동굴, 부모님 만족도 높음)으로 대체.</p>
-          <div class="drive">사계해변까지 차로 30분 (남쪽)</div>
+          <div class="stop-head"><h4>고집돌우럭 제주공항점</h4><span class="tag eat">점심 · 돌우럭조림</span></div>
+          <p>도착하자마자 <b>캐치테이블 원격 줄서기 필수</b>. 부모님 첫 식사로 든든하고 정갈해 환갑 여행 시작으로 최고예요. 공항·동문시장 근처라 입도 직후 동선에 딱.</p>
+          <div class="drive">오설록까지 차로 40분 (남쪽)</div>
         </div>
       </li>
       <li class="stop">
-        <div class="stop-time">14:30</div>
+        <div class="stop-time">13:45</div>
         <div class="rail"><div class="dot"></div></div>
         <div class="stop-body">
-          <div class="stop-head"><h4>사계해변</h4><span class="tag photo">환갑 사진</span></div>
-          <p>평지 산책로에서 산방산·형제섬을 배경으로. 이번 여행의 <b>환갑 기념사진 메인 스팟</b>. 바로 옆 용머리해안은 계단·물때 통제가 잦아 조망만.</p>
-          <div class="drive">원앤온리까지 차로 5분</div>
+          <div class="stop-head"><h4>오설록 티뮤지엄 &amp; 이니스프리</h4><span class="tag">녹차 · 실내</span></div>
+          <p>공항에서 숙소로 가는 길목. <b>유모차 동선이 완만하고 실내가 쾌적</b>해 아기들과 잠깐 녹차 오아시스를 즐기기 좋아요. 부모님께 시원한 <b>녹차 오프레도</b> 한 잔.</p>
+          <div class="drive">써머셋까지 차로 5분</div>
         </div>
       </li>
       <li class="stop">
         <div class="stop-time">15:30</div>
         <div class="rail"><div class="dot"></div></div>
         <div class="stop-body">
-          <div class="stop-head"><h4>원앤온리</h4><span class="tag">산방산뷰 카페</span></div>
-          <p>산방산과 바다가 한 프레임에 담기는 카페. 실내외가 넓고 화장실이 깨끗하며 야외 벤치가 많아 <b>아기·부모님께 가장 편한 쉼터</b>.</p>
-          <div class="drive">숙소까지 차로 12분</div>
+          <div class="stop-head"><h4>써머셋 체크인 &amp; 탐모라 수영장</h4><span class="tag">수영 · 휴식</span></div>
+          <p>체크인 후 바로 물놀이. 투숙객 전용 <b>탐모라 수영장</b>은 실내외가 연결되고 수온이 따뜻해 4·12개월 아기에게 안성맞춤. 자쿠지에서 부모님 이동 피로도 풀어요.</p>
+          <div class="drive">숙성도까지 차로 15~20분</div>
         </div>
       </li>
       <li class="stop end">
-        <div class="stop-time">17:00</div>
+        <div class="stop-time">18:30</div>
         <div class="rail"><div class="dot"></div></div>
         <div class="stop-body">
-          <div class="stop-head"><h4>써머셋 체크인</h4><span class="tag">휴식</span></div>
-          <p>단지 내 수영장·편의점·식당으로 첫날 저녁은 편하게. 도착일치곤 알찬 편이니, 아기 컨디션 보고 사계·원앤온리 중 하나는 건너뛰어도 좋아요.</p>
+          <div class="stop-head"><h4>숙성도 중문점</h4><span class="tag eat">저녁 · 숙성 흑돼지</span></div>
+          <p>수영 끝날 때쯤 <b>테이블링/캐치테이블로 미리 웨이팅</b>. 숙소에서 차로 15~20분. <b>고기를 다 구워줘서</b> 아기들이 있어도, 환갑 주인공 부모님도 편하게 극상의 흑돼지를 즐겨요.</p>
         </div>
       </li>
     </ul>
@@ -332,44 +344,44 @@
     <div class="day-head">
       <div class="left">
         <div class="ord serif">둘째 날<small>DAY 2</small></div>
-        <div class="day-theme">카멜리아힐 · 중문</div>
+        <div class="day-theme">중문 식물원 · 환갑 파티 · 사계 일몰</div>
       </div>
       <div class="day-date">8.30 (토)</div>
     </div>
     <ul class="timeline">
       <li class="stop start">
-        <div class="stop-time">08:40</div>
+        <div class="stop-time">10:00</div>
         <div class="rail"><div class="dot"></div></div>
         <div class="stop-body">
-          <div class="stop-head"><h4>카멜리아힐</h4><span class="tag">정원 산책</span></div>
-          <p>8:30 오픈 직후가 덜 덥고 한적. 평탄한 길이 많아 유모차 OK. <b>8월 말엔 동백은 안 펴니</b> 꽃보다 그늘 정원 산책으로 기대치 조정.</p>
-          <div class="drive">고집돌우럭까지 차로 20분 (동쪽)</div>
+          <div class="stop-head"><h4>여미지식물원</h4><span class="tag">실내 온실</span><span class="opt">카멜리아힐 대체</span></div>
+          <p>중문 단지의 거대한 <b>실내 온실</b>이라 더위·비와 무관하게 유모차로 꽃 구경. 중앙 <b>전망탑 엘리베이터</b>에서 한라산·범섬까지 한눈에 보여 어르신들이 좋아하세요.</p>
+          <div class="drive">더클리프까지 차로 5분</div>
         </div>
       </li>
       <li class="stop">
-        <div class="stop-time">11:30</div>
+        <div class="stop-time">12:00</div>
         <div class="rail"><div class="dot"></div></div>
         <div class="stop-body">
-          <div class="stop-head"><h4>고집돌우럭 본점</h4><span class="tag eat">점심 · 돌우럭조림</span></div>
-          <p>이번 여행의 <b>필수 코스</b>. 11:30 도착이면 점심 피크와 브레이크타임(14:50)을 둘 다 피해요. '테이블링' 앱 예약 권장, 최소 2인분 주문.</p>
-          <div class="drive">더클리프까지 차로 2분</div>
-        </div>
-      </li>
-      <li class="stop">
-        <div class="stop-time">13:00</div>
-        <div class="rail"><div class="dot"></div></div>
-        <div class="stop-body">
-          <div class="stop-head"><h4>더클리프</h4><span class="tag">중문 오션뷰</span></div>
-          <p>중문색달해변 절벽 위 오션뷰가 일품. 비치클럽·라운지 분위기라 낮엔 괜찮지만 조용한 카페는 아니에요. 분위기 사진엔 최고.</p>
+          <div class="stop-head"><h4>더클리프</h4><span class="tag eat">점심 · 중문 오션뷰</span></div>
+          <p>밤엔 클럽 분위기지만 <b>낮~오후엔 해외 리조트풍 카페&amp;펍</b>이라 부모님·아기와 가기 좋아요. 탁 트인 중문 바다를 보며 피자·파스타·수제버거, <b>무알콜 칵테일</b>도. 야외 소파석이 넓어요.</p>
           <div class="drive">숙소까지 차로 20분</div>
         </div>
       </li>
-      <li class="stop end">
-        <div class="stop-time">15:00</div>
+      <li class="stop">
+        <div class="stop-time">14:00</div>
         <div class="rail"><div class="dot"></div></div>
         <div class="stop-body">
-          <div class="stop-head"><h4>써머셋 복귀</h4><span class="tag">수영장 · 휴식</span></div>
-          <p>한낮 더위는 단지 수영장에서. 아기 낮잠 리듬에 맞춰 오후는 여유롭게.</p>
+          <div class="stop-head"><h4>숙소 복귀 · 환갑 축하 파티</h4><span class="tag">휴식 · 이벤트</span></div>
+          <p>아기들 피곤할 시간. 거실 에어컨 켜고 낮잠 재우며 <b>환갑 축하 케이크·용돈 이벤트</b> 등 대가족만의 오붓한 메인 파티를 가져요.</p>
+          <div class="drive">사계해안까지 차로 15분</div>
+        </div>
+      </li>
+      <li class="stop end">
+        <div class="stop-time">17:30</div>
+        <div class="rail"><div class="dot"></div></div>
+        <div class="stop-body">
+          <div class="stop-head"><h4>사계해안 · 일몰</h4><span class="tag photo">환갑 사진 · 노을</span></div>
+          <p>8월 말 일몰은 <b>저녁 7시 전후</b>. 5시 반쯤 도착하면 이끼 낀 화산재 지형(포토스팟)과 <b>형제섬 뒤 노을</b>을 만나요. 해안도로는 유모차 산책도 잔잔. 저녁은 <b>인근 갈치·전복집(아래 순천미향 추천)</b>.</p>
         </div>
       </li>
     </ul>
@@ -379,26 +391,27 @@
     <div class="day-head">
       <div class="left">
         <div class="ord serif">셋째 날<small>DAY 3</small></div>
-        <div class="day-theme">마무리 · 출발</div>
+        <div class="day-theme">한림 · 협재 · 마무리</div>
       </div>
       <div class="day-date">8.31 (일)</div>
     </div>
     <ul class="timeline">
       <li class="stop start">
-        <div class="stop-time">오전</div>
+        <div class="stop-time">09:30</div>
         <div class="rail"><div class="dot"></div></div>
         <div class="stop-body">
-          <div class="stop-head"><h4>숙소에서 여유</h4><span class="tag">체크아웃</span></div>
-          <p>수영장·산책으로 마지막 아침. 11:30 전에 체크아웃하고 출발 준비.</p>
+          <div class="stop-head"><h4>한림공원</h4><span class="tag">평지 산책</span><span class="opt">신창풍차 대체</span></div>
+          <p>협재해변 바로 맞은편 대형 공원. <b>평지 위주라 유모차가 편하고</b>, 부모님이 좋아하실 분재원·야자수길, 아기들이 좋아할 작은 동물원(조류 등)이 있어 가볍게 한 바퀴. 시간 여유가 있으면 <b>신창풍차해안도로 드라이브</b>로 대체해도 훌륭해요.</p>
+          <div class="drive">협재해수욕장까지 차로 3분</div>
         </div>
       </li>
       <li class="stop">
-        <div class="stop-time">10:00</div>
+        <div class="stop-time">11:00</div>
         <div class="rail"><div class="dot"></div></div>
         <div class="stop-body">
-          <div class="stop-head"><h4>본태박물관</h4><span class="tag">실내</span><span class="opt">선택</span></div>
-          <p>시간·날씨 되면 잠깐. 타다오 안도 건축에 실내라 더위·비와 무관. 생략하고 공항 근처에서 점심으로 마무리해도 좋아요.</p>
-          <div class="drive">공항까지 차로 약 50분</div>
+          <div class="stop-head"><h4>협재해수욕장</h4><span class="tag eat">점심 · 비양도 뷰</span></div>
+          <p>에메랄드빛 바다와 비양도 뷰의 협재에서 <b>가족사진</b>을 남겨요. 8월 말이라 바닷바람이 시원. 점심은 유모차가 편한 깔끔한 근처 맛집(예: 보말칼국수 <b>한림칼국수</b>나 오션뷰 한식당)에서 마지막 식사.</p>
+          <div class="drive">공항까지 차로 약 45~50분</div>
         </div>
       </li>
       <li class="stop end">
@@ -406,12 +419,42 @@
         <div class="rail"><div class="dot"></div></div>
         <div class="stop-body">
           <div class="stop-head"><h4>제주공항 출발</h4><span class="tag">비행기</span></div>
-          <p>숙소에서 공항까지 약 50분이라 11:30 출발이 목표. 가볍게 마무리하고 탑승.</p>
+          <p>12:45 출발 → 13:30 렌터카 반납·공항 도착 → <b>14:25 탑승</b>. 여유가 빠듯하니 한림공원은 가볍게 한 바퀴만 돌고 협재 점심에 시간을 두세요.</p>
         </div>
       </li>
     </ul>
   </div>
       </div>
+    </div>
+  </section>
+
+  <!-- 맛집 추천 후보 -->
+  <section class="eats reveal">
+    <div class="sec-label">맛집 추천 후보</div>
+    <h3 class="serif">같이 정해봐요 · 후보 맛집</h3>
+    <div class="eats-grid">
+      <article class="eat-card">
+        <div class="stop-head"><h4>순천미향 제주산방산본점</h4><span class="tag eat">은갈치조림</span></div>
+        <p>두툼한 <b>은갈치조림</b>과 제왕삼합(문어·전복·흑돼지)으로 알려진 사계 맛집. 정갈한 한 상이라 부모님 입맛에 잘 맞아요.</p>
+        <div class="drive">사계해안(2일차 일몰) 바로 옆 · 저녁으로 딱</div>
+        <div class="eat-meta">10:00~20:00 (LO 19:00) · 목요일 휴무 · 안덕면 사계리</div>
+        <div class="pop-links">
+          <a target="_blank" rel="noopener" href="https://map.naver.com/p/search/순천미향%20제주산방산본점">네이버</a>
+          <a target="_blank" rel="noopener" href="https://map.kakao.com/?q=순천미향%20제주산방산본점">카카오</a>
+          <a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=순천미향%20제주산방산본점">구글</a>
+        </div>
+      </article>
+      <article class="eat-card">
+        <div class="stop-head"><h4>닥그네할망</h4><span class="tag eat">접짝뼈국</span></div>
+        <p>돼지 갈비뼈를 푹 고아낸 제주 향토 국 <b>접짝뼈국</b>·몸국 전문 현지 노포. 슴슴하고 배지근한 옛 제주 맛이에요.</p>
+        <div class="drive">제주공항 근처(북쪽) · 도착일/출발일 식사 후보</div>
+        <div class="eat-meta">월~토 08:00~19:00 · 일 14:00 마감(소진 시 조기마감) · 제주시 도남동</div>
+        <div class="pop-links">
+          <a target="_blank" rel="noopener" href="https://map.naver.com/p/search/닥그네할망%20제주">네이버</a>
+          <a target="_blank" rel="noopener" href="https://map.kakao.com/?q=닥그네할망%20제주">카카오</a>
+          <a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=닥그네할망%20제주">구글</a>
+        </div>
+      </article>
     </div>
   </section>
 
@@ -421,11 +464,11 @@
     <h3>아기 둘 · 환갑 부모님 동반 체크리스트</h3>
     <ul>
       <li><span class="num">一</span><div><b>카시트 2개 예약</b><p>4개월(영아용)과 돌쟁이(유아용)는 종류가 달라요. 렌터카 예약 때 둘 다 명시.</p></div></li>
-      <li><span class="num">二</span><div><b>고집돌우럭은 11:30 도착</b><p>점심 피크와 브레이크타임(14:50)을 피하는 황금 시간. '테이블링' 예약·최소 2인분.</p></div></li>
-      <li><span class="num">三</span><div><b>더클리프는 낮에</b><p>노을 시간(17~18시)엔 자리 경쟁이 심해요. 점심 직후가 한가합니다.</p></div></li>
-      <li><span class="num">四</span><div><b>카멜리아힐 = 동백 비수기</b><p>8월 말엔 꽃이 없어요. 꽃이 중요하면 같은 시간에 본태박물관(실내·시원)으로 교체.</p></div></li>
-      <li><span class="num">五</span><div><b>날씨·태풍 변수</b><p>늦더위와 태풍철. 야외는 오전에 몰고 한낮엔 숙소 수영장. 비 오면 본태박물관으로 대체.</p></div></li>
-      <li><span class="num">六</span><div><b>동부는 과감히 패스</b><p>성산·우도는 편도 1시간 반. 모든 코스를 숙소 기준 차로 5~25분 안에 묶었어요.</p></div></li>
+      <li><span class="num">二</span><div><b>원격 줄서기 필수</b><p>고집돌우럭·숙성도는 현장 대기가 길어요. 이동하면서 캐치테이블/테이블링 앱으로 미리 웨이팅 — 대가족 여행의 평화를 지키는 지름길.</p></div></li>
+      <li><span class="num">三</span><div><b>수영은 1일차 체크인 직후</b><p>카시트에 오래 앉았던 아기들이 물놀이 후 푹 자요. 수영 끝나고 바로 저녁 '숙성도'를 먹으러 가면 꿀맛.</p></div></li>
+      <li><span class="num">四</span><div><b>더클리프는 낮~오후에</b><p>밤엔 클럽 분위기로 바뀌어요. 점심~오후엔 리조트풍 카페&펍이라 아기·부모님과 가기 좋습니다.</p></div></li>
+      <li><span class="num">五</span><div><b>사계 일몰은 7시 전후</b><p>8월 말 기준. 5시 반쯤 사계해안에 도착하면 형제섬 노을과 화산재 포토스팟을 여유롭게. 저녁은 인근 갈치·전복집(순천미향).</p></div></li>
+      <li><span class="num">六</span><div><b>동부는 과감히 패스</b><p>성산·우도는 편도 1시간 반. 서남부·서부에 집중해 숙소 기준 가까운 동선으로 묶었어요.</p></div></li>
     </ul>
   </section>
 
@@ -444,17 +487,18 @@
   var days=[
     {key:'d1', color:'#2E8270', startBase:false, endBase:true, stops:[
       {label:'✈', t:'10:20', name:'제주공항 도착', q:'제주국제공항', note:'렌터카 · 카시트 2개', ll:[33.5113,126.4930]},
-      {label:'1', t:'12:00', name:'협재해변', q:'협재해변', note:'점심 · 비양도 뷰', ll:[33.3943,126.2399]},
-      {label:'2', t:'14:30', name:'사계해변', q:'사계해변', note:'산방산 배경 · 환갑 사진', ll:[33.2312,126.3105]},
-      {label:'3', t:'15:30', name:'원앤온리', q:'원앤온리 안덕', note:'산방산뷰 카페 · 휴식', ll:[33.2392,126.3194]}
+      {label:'1', t:'11:30', name:'고집돌우럭 제주공항점', q:'고집돌우럭 제주공항점', note:'점심 · 돌우럭조림 · 원격 줄서기', ll:[33.5159,126.5316]},
+      {label:'2', t:'13:45', name:'오설록 티뮤지엄', q:'오설록 티뮤지엄', note:'녹차 · 실내 · 유모차 OK', ll:[33.3057,126.2893]},
+      {label:'3', t:'18:30', name:'숙성도 중문점', q:'숙성도 중문점', note:'저녁 · 숙성 흑돼지', ll:[33.2528,126.4020]}
     ]},
     {key:'d2', color:'#DB7733', startBase:true, endBase:true, stops:[
-      {label:'1', t:'08:40', name:'카멜리아힐', q:'카멜리아힐', note:'정원 산책', ll:[33.2898,126.3683]},
-      {label:'2', t:'11:30', name:'고집돌우럭 본점', q:'고집돌우럭 본점 중문', note:'점심 · 돌우럭조림', ll:[33.2579,126.4168]},
-      {label:'3', t:'13:00', name:'더클리프', q:'더클리프 중문', note:'중문 오션뷰 카페', ll:[33.2443,126.4150]}
+      {label:'1', t:'10:00', name:'여미지식물원', q:'여미지식물원', note:'실내 온실 · 전망탑', ll:[33.2497,126.4188]},
+      {label:'2', t:'12:00', name:'더클리프', q:'더클리프 중문', note:'점심 · 중문 오션뷰', ll:[33.2443,126.4150]},
+      {label:'3', t:'17:30', name:'사계해안', q:'사계해안', note:'일몰 · 형제섬 · 환갑 사진', ll:[33.2312,126.3105]}
     ]},
     {key:'d3', color:'#A8384A', startBase:true, endBase:false, stops:[
-      {label:'1', t:'10:00', name:'본태박물관', q:'본태박물관', note:'실내 · 선택', ll:[33.3038,126.3925]},
+      {label:'1', t:'09:30', name:'한림공원', q:'한림공원', note:'평지 산책 · 분재원', ll:[33.3893,126.2418]},
+      {label:'2', t:'11:00', name:'협재해수욕장', q:'협재해수욕장', note:'점심 · 비양도 뷰', ll:[33.3943,126.2399]},
       {label:'✈', t:'14:25', name:'제주공항 출발', q:'제주국제공항', note:'14:25 비행기', ll:[33.5113,126.4930]}
     ]}
   ];
